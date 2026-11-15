@@ -12,7 +12,20 @@
           "package_name": "com.example.gamevault"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "815792927605-h1hkqkkk0hpeq79vn89a39iv6coui291.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gamevault",
+            "certificate_hash": "8c3192c8f5dbf668a6edc5f67f604bc96d09aa06"
+          }
+        },
+        {
+          "client_id": "815792927605-l9jda4nk05827cj24u1eq5b42ef06lcg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAu4D4E1J6IsisGWCjhS5hA40fSYrCnbQc"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "815792927605-l9jda4nk05827cj24u1eq5b42ef06lcg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

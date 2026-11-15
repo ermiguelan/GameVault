@@ -16,6 +16,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -23,12 +25,21 @@ import com.google.firebase.Firebase;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.GoogleAuthProvider;
+
 public class MainActivity extends AppCompatActivity {
     private TextView txtRegistrate;
     private TextInputEditText txtCorreo;
     private TextInputEditText txtContrasenia;
     private Button btnInicio;
+    private Button btnGoogle;
+    private static final int RC_SIGN_IN = 100;
     private FirebaseAuth auth;
+    private GoogleSignInClient googleSignInClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +50,17 @@ public class MainActivity extends AppCompatActivity {
         txtCorreo= findViewById(R.id.txtCorreo);
         txtContrasenia= findViewById(R.id.txtContrasenia);
         btnInicio= findViewById(R.id.btnInicio);
+        btnGoogle = findViewById(R.id.btnGoogle);
         auth = FirebaseAuth.getInstance();
+        GoogleSignInOptions gso =
+                new GoogleSignInOptions.Builder(
+                        GoogleSignInOptions.DEFAULT_SIGN_IN)
+                        .requestIdToken("815792927605-l9jda4nk05827cj24u1eq5b42ef06lcg.apps.googleusercontent.com")
+                        .requestEmail()
+                        .build();
+
+        googleSignInClient =
+                GoogleSignIn.getClient(this, gso);
 
         txtRegistrate= (TextView) findViewById(R.id.txtRegistrate);
         //Si el usuario esta conectado que lo lleve a la pantalla principal directamente
@@ -52,6 +73,19 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent= new Intent(MainActivity.this, Registro.class);
                 startActivity(intent);
+            }
+        });
+        //inicio de sesion con google
+        btnGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent signInIntent =
+                        googleSignInClient.getSignInIntent();
+
+                startActivityForResult(
+                        signInIntent,
+                        RC_SIGN_IN
+                );
             }
         });
 
@@ -101,6 +135,38 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode,
+                                    int resultCode,
+                                    Intent data) {
+
+        super.onActivityResult(
+                requestCode,
+                resultCode,
+                data
+        );
+
+        if (requestCode == RC_SIGN_IN) {
+
+            Task<GoogleSignInAccount> task =
+                    GoogleSignIn.getSignedInAccountFromIntent(data);
+
+            try {
+
+                GoogleSignInAccount account =
+                        task.getResult(ApiException.class);
+
+                firebaseAuthWithGoogle(
+                        account.getIdToken()
+                );
+
+            } catch (ApiException e) {
+
+                MyToast("Error Google");
+
+            }
+        }
+    }
     private void InicioPantalla() {
         Intent intent = new Intent(
                 MainActivity.this,
@@ -109,7 +175,40 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+    private void firebaseAuthWithGoogle(String idToken){
 
+        AuthCredential credential =
+                GoogleAuthProvider.getCredential(
+                        idToken,
+                        null
+                );
+
+        auth.signInWithCredential(credential)
+                .addOnCompleteListener(this,
+                        new OnCompleteListener<AuthResult>() {
+
+                            @Override
+                            public void onComplete(
+                                    @NonNull Task<AuthResult> task) {
+
+                                if(task.isSuccessful()){
+
+                                    MyToast("Inicio de sesión correcto");
+                                    Intent intent = new Intent(
+                                            MainActivity.this,
+                                            Pantalla_Inicio.class);
+
+                                    startActivity(intent);
+                                    finish();
+                                }else{
+
+                                    MyToast("Error Firebase");
+
+                                }
+
+                            }
+                        });
+    }
     private void MyToast(String texto) {
         Toast.makeText(this, texto, Toast.LENGTH_SHORT).show();
     }

@@ -11,9 +11,9 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="30dp"
         android:contentDescription="Logo"
         tools:srcCompat="@tools:sample/avatars"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,18 +25,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="GameVault"
+        android:textSize="34sp"
         android:textStyle="bold"
-        android:textSize="32sp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@id/imageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layoutCorreo"
-        android:layout_width="0dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="35dp"
         app:layout_constraintTop_toBottomOf="@id/txtTitulo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -52,7 +52,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layoutPassword"
-        android:layout_width="0dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         app:endIconMode="password_toggle"
@@ -75,26 +75,28 @@
         android:layout_height="wrap_content"
         android:text="¿Has olvidado tu contraseña?"
         android:textColor="#2047DA"
+        android:textSize="14sp"
         android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@id/layoutPassword"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
         android:id="@+id/btnInicio"
-        android:layout_width="0dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="Iniciar sesión"
         android:layout_marginTop="20dp"
+        android:text="Iniciar sesión"
         app:layout_constraintTop_toBottomOf="@id/txtOlvidaste"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
         android:id="@+id/btnGoogle"
-        android:layout_width="0dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="Continuar con Google"
         android:layout_marginTop="12dp"
+        android:text="Continuar con Google"
         app:layout_constraintTop_toBottomOf="@id/btnInicio"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -115,10 +117,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Regístrate aquí"
-        android:textStyle="bold"
         android:textColor="#2047DA"
+        android:textStyle="bold"
         android:textSize="16sp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintTop_toBottomOf="@id/textView4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
