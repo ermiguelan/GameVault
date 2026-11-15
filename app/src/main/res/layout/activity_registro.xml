@@ -1,111 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="24dp"
     tools:context=".Registro">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Regístrate"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="226dp"
-            android:layout_height="68dp"
-            android:layout_marginStart="92dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginEnd="93dp"
-            android:layout_marginBottom="30dp"
-            android:text="Regístrate"
-            android:textSize="48sp"
-            app:layout_constraintBottom_toTopOf="@+id/txtUsuario"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutUsuario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@id/textView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <EditText
-            android:id="@+id/txtconfContraseña"
-            android:layout_width="235dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="92dp"
-            android:layout_marginTop="22dp"
-            android:layout_marginEnd="84dp"
-            android:layout_marginBottom="6dp"
-            android:ems="10"
-            android:hint="Confirmar contraseña"
-            android:inputType="text"
-            app:layout_constraintBottom_toTopOf="@+id/btnRegistrarse"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtContraseniaR" />
-
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtUsuario"
-            android:layout_width="235dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="92dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="84dp"
-            android:layout_marginBottom="32dp"
-            android:ems="10"
-            android:hint="Nombre de usuario"
-            android:inputType="text"
-            app:layout_constraintBottom_toTopOf="@+id/txtCorreoR"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre de usuario"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutCorreo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/layoutUsuario"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtCorreoR"
-            android:layout_width="235dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="93dp"
-            android:layout_marginTop="22dp"
-            android:layout_marginEnd="83dp"
-            android:layout_marginBottom="32dp"
-            android:ems="10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="Correo electrónico"
-            android:inputType="text"
-            app:layout_constraintBottom_toTopOf="@+id/txtContraseniaR"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtUsuario" />
+            android:inputType="textEmailAddress"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/btnRegistrarse"
-            android:layout_width="234dp"
-            android:layout_height="79dp"
-            android:layout_marginStart="93dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="84dp"
-            android:layout_marginBottom="114dp"
-            android:text="Registrarse"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtconfContraseña" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutPass"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:endIconMode="password_toggle"
+        app:layout_constraintTop_toBottomOf="@id/layoutCorreo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtContraseniaR"
-            android:layout_width="236dp"
-            android:layout_height="43dp"
-            android:layout_marginStart="92dp"
-            android:layout_marginTop="22dp"
-            android:layout_marginEnd="83dp"
-            android:layout_marginBottom="32dp"
-            android:ems="10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="Contraseña"
-            android:inputType="text"
-            app:layout_constraintBottom_toTopOf="@+id/txtconfContraseña"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtCorreoR" />
+            android:inputType="textPassword"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutPassConfirm"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:endIconMode="password_toggle"
+        app:layout_constraintTop_toBottomOf="@id/layoutPass"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtconfContraseña"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirmar contraseña"
+            android:inputType="textPassword"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnRegistrarse"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Registrarse"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/layoutPassConfirm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

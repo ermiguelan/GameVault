@@ -2,6 +2,7 @@ package com.example.gamevault;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,14 +18,15 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.Firebase;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
     private TextView txtRegistrate;
-    private EditText txtCorreo;
-    private EditText txtContrasenia;
+    private TextInputEditText txtCorreo;
+    private TextInputEditText txtContrasenia;
     private Button btnInicio;
     private FirebaseAuth auth;
 
@@ -59,8 +61,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String correo= txtCorreo.getText().toString();
                 String contrasenia= txtContrasenia.getText().toString();
-                if(correo.isEmpty() || contrasenia.isEmpty()){
-                    MyToast("Debes rellenar todos los campos");
+                if(correo.isEmpty()){
+                    txtCorreo.setError("Rellena este campo");
+                    return;
+                }
+                if(contrasenia.isEmpty()){
+                    txtContrasenia.setError("Rellena este campo");
+                    return;
+                }
+
+                if(!Patterns.EMAIL_ADDRESS.matcher(correo).matches()){
+                    txtCorreo.setError("Correo electrónico no válido");
                     return;
                 }
                 auth.signInWithEmailAndPassword(correo, contrasenia).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
